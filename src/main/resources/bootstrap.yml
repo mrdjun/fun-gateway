@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: fun-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.19.128:8848
+        enabled: false
+      config:
+        server-addr: 192.168.19.128:8848
+        enabled: false

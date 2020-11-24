@@ -1,0 +1,33 @@
+server:
+  port: 88
+
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  cloud:
+    sentinel:
+      enabled: true
+      transport:
+        port: 8719
+        dashboard: localhost:8333
+
+    gateway:
+      routes:
+        - id: test_route
+          uri: https://www.baidu.com
+          predicates:
+            - Query=url,baidu
+
+        - id: product_route
+          uri: http://localhost:88
+          predicates:
+            - Path=/api/product/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+
+security:
+  enable: false
+rsa:
+  public-key: c:\rsa.pub
+
